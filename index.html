@@ -136,11 +136,11 @@
     </footer>
     <script>
         var platform = "unknown";
-        if (navigator.appVersion.indexOf("Win") != -1) platform =
+        if (navigator.platform.toLowerCase().startsWith("win32")) platform =
             "win32";
-        if (navigator.appVersion.indexOf("Mac") != -1) platform =
+        if (navigator.platform.toLowerCase().startsWith("mac")) platform =
             "darwin";
-        if (navigator.appVersion.indexOf("Linux") != -1) platform =
+        if (navigator.platform.toLowerCase().startsWith("linux")) platform =
             "linux";
         let osName;
         os = document.getElementById('os');
