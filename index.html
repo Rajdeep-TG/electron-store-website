@@ -138,6 +138,7 @@
     <script>
         var platform = "Unknown";
         msg = document.getElementById('msg')
+        os = document.getElementById('os')
         const platform = navigator.platform.toLowerCase()
         const isLinux = platform.startsWith("linux")
         const isWindows = platform.startsWith("win32")
@@ -160,7 +161,7 @@
         if (platformCorrected == "Android") {
             msg.innerHTML = "Sorry, Android is not Supported!"
         }
-        osName = platformCorrected
+        osName = platformCorrected || "Unknown OS"
         os.innerHTML = osName
 
         $.get(
