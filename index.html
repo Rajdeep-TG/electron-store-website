@@ -136,26 +136,31 @@
         </div>
     </footer>
     <script>
-        var platform = "unknown";
+        var platform = "Unknown";
         msg = document.getElementById('msg')
-        if (navigator.platform.toLowerCase().startsWith("win32")) platform =
-            "win32";
-        if (navigator.platform.toLowerCase().startsWith("mac")) platform =
-            "darwin";
-        if (navigator.platform.toLowerCase().startsWith("linux")) platform =
-            "linux";
-        let osName;
-        os = document.getElementById('os');
-        if (platform == "win32") {
-            osName = "Windows";
-        } else if (platform == "darwin") {
-            osName = "macOS"
-        } else if (platform == "linux") {
-            osName = "Linux"
-        } else {
-            osName = "Unknown OS"
-            msg.innerHTML = "Sorry, Electron App Store is only available in Windows, Linux and macOS!"
+        const platform = navigator.platform.toLowerCase()
+        const isLinux = platform.startsWith("linux")
+        const isWindows = platform.startsWith("win32")
+        const isMac = platform.startsWith("mac")
+        const isAndroid = /android/i.test(navigator.userAgent)
+
+        let platformCorrected;
+        if (isAndroid && isLinux) {
+            platformCorrected = 'Android'
         }
+        if (!isAndroid && isLinux) {
+            platformCorrected = 'Linux'
+        }
+        if (isWindows) {
+            platformCorrected = 'Windows'
+        }
+        if (isMac) {
+            platformCorrected = 'macOS'
+        }
+        if (platformCorrected == "Android") {
+            msg.innerHTML = "Sorry, Android is not Supported!"
+        }
+        osName = platformCorrected || "Unknown"
         os.innerHTML = osName
 
         $.get(
