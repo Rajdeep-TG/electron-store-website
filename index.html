@@ -8,6 +8,8 @@
     <title>Electron App Store</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="icon" href="https://raw.githubusercontent.com/Patrick-web/electron-app-store/main/icons/64x64.png" type="image/png">
 </head>
 
@@ -170,6 +172,15 @@
                 $('#win').attr("href", `https://github.com/Patrick-web/electron-app-store/releases/tag/${data[0].name}/Electron-Store-${data[0].name.replace('v', '')}.exe`)
                 $('#linux').attr("href", `https://github.com/Patrick-web/electron-app-store/releases/tag/${data[0].name}/Electron-Store-${data[0].name.replace('v', '')}.appimage`)
                 $('#mac').attr("href", `https://github.com/Patrick-web/electron-app-store/releases/tag/${data[0].name}/Electron-Store-${data[0].name.replace('v', '')}.dmg`)
+                if (platformCorrected == "Linux") {
+                    $('#msg').html(`<button class="transition duration-500 border-0 text-lg h-12 w-36 bg-red-500 hover:bg-red-700 text-white mt-2 px-3 rounded-md" onclick="window.location.href = 'https://github.com/Patrick-web/electron-app-store/releases/tag/${data[0].name}/Electron-Store-${data[0].name.replace('v', '')}.appimage'"> <span>Download for Linux</span> <i class='bx bx-down-arrow-alt animate-bounce text-xl'></i></button>`)
+                } else if (platformCorrected == "Windows") {
+                    $('#msg').html(`<button class="transition duration-500 border-0 text-lg h-12 w-36 bg-red-500 hover:bg-red-700 text-white mt-2 px-3 rounded-md" onclick="window.location.href = 'https://github.com/Patrick-web/electron-app-store/releases/tag/${data[0].name}/Electron-Store-${data[0].name.replace('v', '')}.exe'"> <span>Download for Windows</span> <i class='bx bx-down-arrow-alt animate-bounce text-xl'></i></button>`)
+                } else if (platformCorrected == "macOS") {
+                    $('#msg').html(`<button class="transition duration-500 border-0 text-lg h-12 w-36 bg-red-500 hover:bg-red-700 text-white mt-2 px-3 rounded-md" onclick="window.location.href = 'https://github.com/Patrick-web/electron-app-store/releases/tag/${data[0].name}/Electron-Store-${data[0].name.replace('v', '')}.dmg'"> <span>Download for macOS</span> <i class='bx bx-down-arrow-alt animate-bounce text-xl'></i></button>`)
+                } else {
+                    $('#msg').text("Sorry, your Platform is not supported!")
+                }
             }
         );
         cpr = document.getElementById('cpr');
