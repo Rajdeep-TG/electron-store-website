@@ -36,6 +36,7 @@
             <div class="flex flex-col text-center w-full mb-20">
                 <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">Installation</h2>
                 <p>We Detected your OS is <span id="os"></span>.</p>
+                <p id="msg"></p>
                 <p>Latest Version: <span id="tag"></span></p>
             </div>
             <div class="flex flex-wrap -m-4">
@@ -136,6 +137,7 @@
     </footer>
     <script>
         var platform = "unknown";
+        msg = document.getElementById('msg')
         if (navigator.platform.toLowerCase().startsWith("win32")) platform =
             "win32";
         if (navigator.platform.toLowerCase().startsWith("mac")) platform =
@@ -152,6 +154,7 @@
             osName = "Linux"
         } else {
             osName = "Unknown OS"
+            msg.innerHTML = "Sorry, Electron App Store is only available in Windows, Linux and macOS!"
         }
         os.innerHTML = osName
 
